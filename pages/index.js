@@ -2,13 +2,25 @@ import styled from 'styled-components'
 import MainGrid from '../src/components/MainGrid/main-grid';
 import Box from '../src/components/MainGrid/box';
 /* Importando componentes individualmente */
-import { AlurakutMenu, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons';
+import { AlurakutMenu, OrkutNostalgicIconSet, AlurakutProfileSidebarMenuDefault } from '../src/lib/AlurakutCommons';
 import { ProfileRelationsBoxWrapper } from '../src/components/profileRalations'
+import { AlurakutFormCommunity } from '../src/lib/MainAlurakutCommons';
+
 
 function ProfileSidebar(props) {
   return (
     <Box>
-      <img src={`https://github.com/${props.githubUser}.png`} style={{ borderRadius: '8px'}} />
+      <div>
+        <img src={`https://github.com/${props.githubUser}.png`} style={{ borderRadius: '8px'}} />
+        <hr />
+        <p>
+          <a href={`https://github.com/${props.githubUser}`} className='boxLink' target='_blank'>
+            {props.githubUser}
+          </a>
+        </p>
+        <hr />
+        <AlurakutProfileSidebarMenuDefault githubUser={props.githubUser}/>
+      </div>
     </Box>
   )
 }
@@ -20,7 +32,9 @@ export default function Home() {
 
   return (
     <div>
+      {/* componente para o menu */}
       <AlurakutMenu/>
+
       <MainGrid>
         <div className="profileArea" style={{ gridArea: "profileArea"}}>
           <ProfileSidebar githubUser={githubUser}/>
@@ -31,7 +45,9 @@ export default function Home() {
             <OrkutNostalgicIconSet />
           </Box>
           <Box>
-            <h2 className="smallTitle">Ações</h2>
+            <h2 className="smallTitle">O que você deseja fazer?</h2>
+            
+            <AlurakutFormCommunity />
           </Box>
         </div>
         <div className="relationsArea" style={{ gridArea: "relationsArea"}}>
